@@ -1,6 +1,6 @@
 # Lara Camp
 
-#### Laravel project for Online Bootcamp Platform
+#### Basic Laravel project for Online Bootcamp Platform
 
 
 ###### Overview
