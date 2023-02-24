@@ -26,9 +26,9 @@
                 <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                     Halo, {{Auth::user()->name}}!
                     @if (Auth::user()->avatar)
-                    <img src="{{Auth::user()->avatar}}" class="user-photo" alt="" style="border-radius: 50%">
+                    <img src="{{Auth::user()->avatar}}" class="user-photo" alt="">
                     @else
-                    <img src="https://ui-avatars.com/api/?name=Admin" class="user-photo" alt="" style="border-radius: 50%">
+                    <img src="https://ui-avatars.com/api/?name=Admin" class="user-photo" alt="">
                     @endif
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="right: 0; left: auto">
                         <li>
