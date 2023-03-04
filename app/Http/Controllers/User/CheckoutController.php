@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Models\Camp;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\User\Checkout\Store;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Checkout\AfterCheckout;
 
 class CheckoutController extends Controller
 {
@@ -50,7 +52,7 @@ class CheckoutController extends Controller
         $data = $request->all();
         $data['user_id'] = Auth::id();
         $data['camp_id'] = $camp->id;
-        $data['card_number'] = $request['card-number'];
+        $data['card_number'] = $request['card_number'];
         $data['cvv'] = $request['cvc'];
 
         // update user data
@@ -62,6 +64,9 @@ class CheckoutController extends Controller
 
         // create checkout
         $checkout = Checkout::create($data);
+
+        // sending email
+        Mail::to(Auth::user()->email)->send(new AfterCheckout($checkout));
 
         return redirect(route('checkout.success'));
         
@@ -115,5 +120,10 @@ class CheckoutController extends Controller
     public function success()
     {
         return view('checkout.success');
+    }
+
+    public function invoice(Checkout $checkout)
+    {
+        return $checkout;
     }
 }

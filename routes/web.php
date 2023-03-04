@@ -30,7 +30,7 @@ Route::get('/login', function () {
 Route::get('/signin-google', [UserController::class, 'google'])->name('user.google.login');
 Route::get('/auth/google/callback', [UserController::class, 'googleHandlerCallback']);
 
-Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -41,6 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/checkout/{camp}', [CheckoutController::class, 'store'])->name('checkout.store');
     Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
     Route::get('/checkout/{camp:slug}', [CheckoutController::class, 'create'])->name('checkout.create');
+    Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+    Route::get('dashboard/checkout/invoice/{checkout}', [CheckoutController::class, 'invoice'])->name('user.checkout.invoice');
 });
 
 require __DIR__.'/auth.php';
