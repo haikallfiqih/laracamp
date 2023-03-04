@@ -4,10 +4,10 @@
 Hello {{ $checkout->User->name }},
 <br>
 
-Thank you for register on <b>{{ $checkout->Camp->title }}</b>, please see payment instruction by click the button bellow
+Thank you for register on <b>{{ $checkout->Camp->title }}</b>, You can see the details in your dashboard
 
-<x-mail::button :url="route('user.checkout.invoice', $checkout->id)">
-Get Invoice
+<x-mail::button :url="route('dashboard', $checkout->id)">
+Dashboard
 </x-mail::button>
 
 Thanks,<br>

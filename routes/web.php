@@ -4,7 +4,11 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\User\DashboardController as UserDashboard;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
+use App\Http\Controllers\Admin\CheckoutController as CheckoutUpdateStatus;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -38,11 +42,29 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // checkout
-    Route::post('/checkout/{camp}', [CheckoutController::class, 'store'])->name('checkout.store');
-    Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
-    Route::get('/checkout/{camp:slug}', [CheckoutController::class, 'create'])->name('checkout.create');
+    Route::post('/checkout/{camp}', [CheckoutController::class, 'store'])->name('checkout.store')->middleware('userRole:user');
+    Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success')->middleware('userRole:user');
+    Route::get('/checkout/{camp:slug}', [CheckoutController::class, 'create'])->name('checkout.create')->middleware('userRole:user');
+
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::get('dashboard/checkout/invoice/{checkout}', [CheckoutController::class, 'invoice'])->name('user.checkout.invoice');
+
+
+    // user
+    Route::prefix('user/dashboard')->namespace('User')->name('user.')->middleware('userRole:user')->group(function(){
+        Route::get('/', [UserDashboard::class, 'index'])->name('dashboard');
+    });
+
+
+    // admin
+    Route::prefix('admin/dashboard')->namespace('Admin')->name('admin.')->middleware('userRole:admin')->group(function(){
+        Route::get('/', [AdminDashboard::class, 'index'])->name('dashboard');
+
+        // paid status update
+        Route::post('/checkout/{checkout}', [CheckoutUpdateStatus::class, 'update'])->name('checkout.update');
+
+    });
+
 });
 
 require __DIR__.'/auth.php';
