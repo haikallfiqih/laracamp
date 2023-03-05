@@ -43,6 +43,11 @@
                                                     @csrf
                                                     <button class="btn btn-primary btn-sm">Set to Paid</button>
                                                 </form> 
+                                            @else
+                                                <form action="{{ route('admin.checkout.update', $checkout->id) }}" method="post">
+                                                    @csrf
+                                                    <button class="btn btn-dark btn-sm">Undo to unpaid</button>
+                                                </form>
                                             @endif
                                         </td>
                                     </tr>
