@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('camp_id')->constrained();
             $table->string('card_number', 28);
             $table->string('expired');
-            $table->string('cvv');
+            $table->string('cvc');
             $table->boolean('is_paid')->default(false);
             $table->timestamps();
             $table->softDeletes();

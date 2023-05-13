@@ -14,10 +14,10 @@ class Checkout extends Model
     protected $fillable = [
         'user_id',
         'camp_id',
-        'card_number',
-        'expired',
-        'cvv',
-        'is_paid',
+        // 'card_number',
+        // 'expired',
+        // 'cvv',
+        // 'is_paid',
     ];
 
     public function Camp(): BelongsTo {
