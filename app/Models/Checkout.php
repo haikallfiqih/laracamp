@@ -14,6 +14,11 @@ class Checkout extends Model
     protected $fillable = [
         'user_id',
         'camp_id',
+        'deleted_at',
+        'payment_status',
+        'midtrans_url',
+        'midtrans_booking_code'
+
         // 'card_number',
         // 'expired',
         // 'cvv',
