@@ -3,7 +3,7 @@
 @section('content')
 <section class="checkout">
     <div class="container">
-        <div class="row text-center pb-70">
+        <div class="text-center row pb-70">
             <div class="col-lg-12 col-12 header-wrap">
                 <p class="story">
                     YOUR FUTURE CAREER
@@ -53,29 +53,21 @@
                                 @endif
                             </div>
                             <div class="mb-4">
-                                <label  class="form-label">Card Number</label>
-                                <input name="card_number" type="number" class="form-control {{ $errors->has('card_number') ? 'is-invalid' : '' }}" value="{{ old('card-number') ? : '' }}">
-                                @if($errors->has('card_number'))
-                                    <p class="text-danger">{{ $errors->first('card_number') }}</p>
+                                <label for="exampleInputEmail1" class="form-label">Phone Number</label>
+                                <input name="phone" type="text" class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{old('phone') ? : Auth::user()->phone }}">
+                                @if($errors->has('phone'))
+                                    <p class="text-danger">{{ $errors->first('phone') }}</p>
                                 @endif
                             </div>
-                            <div class="mb-5">
-                                <div class="row">
-                                    <div class="col-lg-6 col-12">
-                                        <label for="exampleInputEmail1" class="form-label ">Expired</label>
-                                        <input name="expired" placeholder="06/12" type="text" class="form-control {{ $errors->has('expired') ? 'is-invalid' : '' }}" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                        @if($errors->has('expired'))
-                                          <p class="text-danger">{{ $errors->first('expired') }}</p>
-                                         @endif
-                                    </div>
-                                    <div class="col-lg-6 col-12">
-                                        <label for="exampleInputEmail1" class="form-label">CVC</label>
-                                        <input name="cvc" type="text" maxlength="3" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                    </div>
-                                </div>
+                            <div class="mb-4">
+                                <label for="exampleInputEmail1" class="form-label">Address</label>
+                                <input name="address" type="text" class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{old('address') ? : Auth::user()->address }}">
+                                @if($errors->has('address'))
+                                    <p class="text-danger">{{ $errors->first('address') }}</p>
+                                @endif
                             </div>
                             <button type="submit" class="w-100 btn btn-primary">Pay Now</button>
-                            <p class="text-center subheader mt-4">
+                            <p class="mt-4 text-center subheader">
                                 <img src="{{ asset('images/ic_secure.svg') }}" alt=""> Your payment is secure and encrypted.
                             </p>
                         </form>
