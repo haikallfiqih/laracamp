@@ -28,8 +28,8 @@ class Store extends FormRequest
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email,'.Auth::id().',id',
             'occupation' => 'required|string',
-            'card_number' => 'required|numeric|digits_between:8,16',
-            'cvc' => 'required|numeric|digits:3',
+            'phone' => 'required|string',
+            'address' => 'required|string',
         ];
     }
 }

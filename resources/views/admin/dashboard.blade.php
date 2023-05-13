@@ -19,7 +19,7 @@
                                     <th>Price</th>
                                     <th>Register Date</th>
                                     <th>Paid Status</th>
-                                    <th>Action</th>
+                                    {{-- <th>Action</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -30,14 +30,9 @@
                                         <td>{{$checkout->Camp->title}}</td>
                                         <td>{{$checkout->Camp->price}}k</td>
                                         <td>{{$checkout->created_at->format('M d Y')}}</td>
-                                        <td>
-                                            @if ($checkout->is_paid)
-                                                <span class="badge bg-success">Paid</span>
-                                            @else
-                                            <span class="badge bg-warning">Waiting</span>
-                                            @endif
-                                        </td>
-                                        <td>
+                                        <td>{{$checkout->payment_status}}</td>
+                                       
+                                        {{-- <td>
                                             @if(!$checkout->is_paid)
                                                 <form action="{{ route('admin.checkout.update', $checkout->id) }}" method="post">
                                                     @csrf
@@ -49,7 +44,7 @@
                                                     <button class="btn btn-dark btn-sm">Undo to unpaid</button>
                                                 </form>
                                             @endif
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                 @empty
                                     <tr>

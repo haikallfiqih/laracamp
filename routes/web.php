@@ -29,6 +29,10 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 
+// midtrans routes
+Route::get('payment/success', [UserController::class, 'midtransCallback']);
+Route::post('payment/success', [UserController::class, 'midtransCallback']);
+
 
 // socialite
 Route::get('/signin-google', [UserController::class, 'google'])->name('user.google.login');
