@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\DashboardController as UserDashboard;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\CheckoutController as CheckoutUpdateStatus;
+use App\Http\Controllers\Admin\DiscountController as DiscountCheckout;
 use Illuminate\Support\Facades\Route;
 
 
@@ -61,11 +62,22 @@ Route::middleware('auth')->group(function () {
 
 
     // admin
-    Route::prefix('admin/dashboard')->namespace('Admin')->name('admin.')->middleware('userRole:admin')->group(function(){
+    Route::prefix('admin/dashboard')->name('admin.')->middleware('userRole:admin')->group(function(){
         Route::get('/', [AdminDashboard::class, 'index'])->name('dashboard');
 
         // paid status update
         Route::post('/checkout/{checkout}', [CheckoutUpdateStatus::class, 'update'])->name('checkout.update');
+
+        // discount controller
+        Route::get('/discount', [DiscountCheckout::class, 'index'])->name('discount.index');
+        Route::get('/discount/create', [DiscountCheckout::class, 'create'])->name('discount.create');
+        Route::get('/discount/store', [DiscountCheckout::class, 'store'])->name('discount.store');
+        Route::get('/discount/edit/{discount}', [DiscountCheckout::class, 'edit'])->name('discount.edit');
+        Route::delete('/discount/{discount}', [DiscountCheckout::class, 'destroy'])->name('discount.destroy');
+        Route::post('/discount/{discount}', [DiscountCheckout::class, 'update'])->name('discount.update');
+        // Route::resource('discount', [DiscountCheckout::class]);
+
+
 
     });
 

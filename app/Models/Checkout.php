@@ -17,7 +17,10 @@ class Checkout extends Model
         'deleted_at',
         'payment_status',
         'midtrans_url',
-        'midtrans_booking_code'
+        'midtrans_booking_code',
+        'discount_id',
+        'discount_percentage',
+        'total'
 
         // 'card_number',
         // 'expired',
@@ -31,5 +34,9 @@ class Checkout extends Model
 
     public function User(): BelongsTo {
         return $this -> belongsTo(User::class);
+    }
+
+    public function Discount(): BelongsTo {
+        return $this -> belongsTo(Discount::class);
     }
 }

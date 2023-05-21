@@ -28,7 +28,14 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$checkout->User->name}}</td>
                                         <td>{{$checkout->Camp->title}}</td>
-                                        <td>{{$checkout->Camp->price}}k</td>
+                                        <td>
+                                            {{$checkout->total}}k
+                                            @if($checkout->discount_id)
+                                                <span class="badge bg-success">
+                                                   Disc {{$checkout->discount_percentage}}%
+                                                </span>
+                                            @endif
+                                        </td>
                                         <td>{{$checkout->created_at->format('M d Y')}}</td>
                                         <td>{{$checkout->payment_status}}</td>
                                        

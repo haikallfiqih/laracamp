@@ -66,6 +66,13 @@
                                     <p class="text-danger">{{ $errors->first('address') }}</p>
                                 @endif
                             </div>
+                            <div class="mb-4">
+                                <label for="exampleInputEmail1" class="form-label">Discount Code</label>
+                                <input name="discount" type="text" class="form-control {{ $errors->has('discount') ? 'is-invalid' : '' }}" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{old('discount')}}">
+                                @if($errors->has('discount'))
+                                    <p class="text-danger">{{ $errors->first('discount') }}</p>
+                                @endif
+                            </div>
                             <button type="submit" class="w-100 btn btn-primary">Pay Now</button>
                             <p class="mt-4 text-center subheader">
                                 <img src="{{ asset('images/ic_secure.svg') }}" alt=""> Your payment is secure and encrypted.
