@@ -38,7 +38,7 @@ class DiscountController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Store $request)
     {
         $discount = Discount::create($request->all());
         $request->session()->flash('success', 'A New Discount has been added');
